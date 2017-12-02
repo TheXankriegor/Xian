@@ -7,30 +7,28 @@ import { CommunicatorService} from '../communicator.service';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent implements OnInit {
+  com: CommunicatorService;
 
-  currency: number;
-  nextClickerCost: number;
-  clickers: number;
+  currency: any;
+  nextClickerCost: any;
+  clickers: any;
 
   constructor(com: CommunicatorService) {
+    this.com = com;
     com.updateEvent.subscribe(val => this.updateTick());
   }
 
   ngOnInit() {
-    this.currency = 0;
-    this.nextClickerCost = 10;
-    this.clickers = 1;
+    this.com.currencyE.subscribe(val => this.currency = val);
+    this.com.clickersE.subscribe(val => this.clickers = val);
+    this.com.nextclickerCostE.subscribe(val => this.nextClickerCost = val);
   }
 
   buyClicker() {
-    if (this.currency >= this.nextClickerCost) {
-      this.clickers += 1;
-      this.currency -= this.nextClickerCost;
-      this.nextClickerCost += 1;
-    }
+    this.com.purchaseEvent.next('test');
   }
 
   updateTick() {
-    this.currency += (this.clickers * 0.1);
+
   }
 }

@@ -10,6 +10,8 @@ import { MainComponent } from './main/main.component';
 import { AgeComponent } from './age/age.component';
 import { UpgradesComponent } from './upgrades/upgrades.component';
 import { DebugComponent } from './debug/debug.component';
+import { Names} from './content/names';
+import {VariableContainer} from './variable-container';
 
 
 @NgModule({
@@ -25,7 +27,7 @@ import { DebugComponent } from './debug/debug.component';
     UpgradesComponent,
     DebugComponent
   ],
-  providers: [CommunicatorService],
+  providers: [CommunicatorService, Names],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
