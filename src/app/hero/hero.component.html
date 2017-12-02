@@ -1,0 +1,9 @@
+<div>
+  <h1>Incremental Test</h1>
+  <hr>
+  <p>Currency: {{currency.toFixed(2)}}</p>
+  <p>Currently owned Clickers: {{clickers}}</p>
+  <button (click)="buyClicker()" [disabled]="currency < nextClickerCost">
+    Purchase Clicker for {{nextClickerCost}}
+  </button>
+</div>

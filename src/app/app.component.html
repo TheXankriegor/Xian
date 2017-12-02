@@ -1,13 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="385" alt="Ki-hanja" src="../assets/Ki-hanja.png">
-</div>
 <nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/main">Main</a>
+  <a routerLink="/hero">Hero</a>
+  <a routerLink="/upgrades" [hidden]="!upgradesUnlocked">Upgrades</a>
+  <a routerLink="/debug" [hidden]="!debugMode">Debug</a>
 </nav>
+<app-age></app-age>
+<hr>
 <router-outlet></router-outlet>
-<app-messages></app-messages>
