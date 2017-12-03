@@ -12,12 +12,14 @@ import { UpgradesComponent } from './upgrades/upgrades.component';
 import { DebugComponent } from './debug/debug.component';
 import { Names} from './content/names';
 import {VariableContainer} from './variable-container';
+import {CookieModule} from 'ngx-cookie';
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CookieModule.forRoot()
   ],
   declarations: [
     AppComponent,

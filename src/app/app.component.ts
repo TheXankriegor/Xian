@@ -3,6 +3,7 @@ import { HeroComponent} from './hero/hero.component';
 import {forEach} from '@angular/router/src/utils/collection';
 import { CommunicatorService} from './communicator.service';
 import {VariableContainer} from './variable-container';
+import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +19,12 @@ export class AppComponent {
   upgradesUnlocked: any = false;
   debugMode = true;
 
-  com: CommunicatorService;
   updateIntveral = 100;
 
-  constructor(com: CommunicatorService) {
+  constructor(private com: CommunicatorService, private _cookieService: CookieService ) {
     const updateTimer = setInterval(() => this.appUpdate(), this.updateIntveral);
-    this.com = com;
-    com.toggleEvent.subscribe(val => this.upgradesUnlocked = val);
-    this.varContainer = new VariableContainer(com);
+    this.com.toggleEvent.subscribe(val => this.upgradesUnlocked = val);
+    this.varContainer = new VariableContainer(com, this._cookieService);
   }
 
   appUpdate() {

@@ -1,8 +1,10 @@
 import {CommunicatorService} from './communicator.service';
+import {CookieModule, CookieService} from 'ngx-cookie';
 
 export class VariableContainer {
 
-  com: CommunicatorService;
+  tick: 0;
+
   testClickers = 1;
   testCurrency = 0;
   testNextClickerCost = 10;
@@ -10,21 +12,28 @@ export class VariableContainer {
   testUpgrade = 0;
   testNextUpgradeCost = 20;
 
-  constructor(com: CommunicatorService) {
-    this.com = com;
-    com.updateEvent.subscribe(val => this.updateTick());
-    com.purchaseEvent.subscribe(val => this.purchase(val));
-    com.clickersE.next(this.testClickers);
-    com.nextclickerCostE.next(this.testNextClickerCost);
-    com.upgradesE.next(this.testUpgrade);
-    com.nextUpgradeCostE.next(this.testNextUpgradeCost);
+  constructor(private com: CommunicatorService, private _cookieService: CookieService ) {
+    this.com.updateEvent.subscribe(val => this.updateTick());
+    this.com.purchaseEvent.subscribe(val => this.purchase(val));
+    this.com.clickersE.next(this.testClickers);
+    this.com.nextclickerCostE.next(this.testNextClickerCost);
+    this.com.upgradesE.next(this.testUpgrade);
+    this.com.nextUpgradeCostE.next(this.testNextUpgradeCost);
+
+    const sav = +this._cookieService.get('currency');
+    if (!isNaN(sav)) {
+      this.testCurrency = sav;
+    }
 
   }
 
 
   updateTick() {
+    this.tick += 1;
     this.testCurrency += (this.testClickers * (0.1 * (this.testUpgrade + 1)) );
     this.com.currencyE.next(this.testCurrency);
+    this._cookieService.put('currency', '' + this.testCurrency);
+
   }
 
   purchase(s: any) {
