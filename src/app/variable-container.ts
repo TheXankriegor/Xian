@@ -20,10 +20,10 @@ export class VariableContainer {
     this.com.upgradesE.next(this.testUpgrade);
     this.com.nextUpgradeCostE.next(this.testNextUpgradeCost);
 
-    const sav = +this._cookieService.get('currency');
-    if (!isNaN(sav)) {
-      this.testCurrency = sav;
-    }
+ //   const sav = +this._cookieService.get('currency');
+   // if (!isNaN(sav)) {
+      //this.testCurrency = sav;
+    //}
 
   }
 

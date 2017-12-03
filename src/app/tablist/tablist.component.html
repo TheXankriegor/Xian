@@ -1,0 +1,27 @@
+<ngb-tabset (tabChange)="onTabChange($event)">
+  <ngb-tab id="main">
+    <ng-template ngbTabTitle>Main
+    </ng-template>
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="hero">
+    <ng-template ngbTabTitle>Hero
+    </ng-template>
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="upgrades" *ngIf='upgradesUnlocked'>
+    <ng-template ngbTabTitle>Upgrades
+    </ng-template>
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="debug" *ngIf="debugMode">
+    <ng-template ngbTabTitle>
+      Debug
+    </ng-template>
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

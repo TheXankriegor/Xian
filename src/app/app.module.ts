@@ -14,9 +14,14 @@ import { Names} from './content/names';
 import {VariableContainer} from './variable-container';
 import {CookieModule} from 'ngx-cookie';
 
+import {NgbModule, NgbTabset} from '@ng-bootstrap/ng-bootstrap';
+import { TablistComponent } from './tablist/tablist.component';
+
+
 
 @NgModule({
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     CookieModule.forRoot()
@@ -27,9 +32,10 @@ import {CookieModule} from 'ngx-cookie';
     MainComponent,
     AgeComponent,
     UpgradesComponent,
-    DebugComponent
+    DebugComponent,
+    TablistComponent
   ],
   providers: [CommunicatorService, Names],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

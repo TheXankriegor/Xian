@@ -5,6 +5,7 @@ import { CommunicatorService} from './communicator.service';
 import {VariableContainer} from './variable-container';
 import {CookieService} from 'ngx-cookie';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,14 +17,13 @@ export class AppComponent {
 
   varContainer: VariableContainer;
 
-  upgradesUnlocked: any = false;
-  debugMode = true;
+
 
   updateIntveral = 100;
 
   constructor(private com: CommunicatorService, private _cookieService: CookieService ) {
     const updateTimer = setInterval(() => this.appUpdate(), this.updateIntveral);
-    this.com.toggleEvent.subscribe(val => this.upgradesUnlocked = val);
+
     this.varContainer = new VariableContainer(com, this._cookieService);
   }
 

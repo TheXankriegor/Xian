@@ -3,6 +3,7 @@
   <hr>
   <p>Currency: {{currency.toFixed(2)}}</p>
   <p>Currently owned Clickers: {{clickers}}</p>
+  <p><ngb-progressbar type="info" [value]="progress" [striped]="true" [animated]="true" >{{progress.toFixed(2)}}</ngb-progressbar></p>
   <button (click)="buyClicker()" [disabled]="currency < nextClickerCost">
     Purchase Clicker for {{nextClickerCost}}
   </button>

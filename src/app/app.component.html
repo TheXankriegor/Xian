@@ -1,10 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<nav>
-  <a routerLink="/main">Main</a>
-  <a routerLink="/hero">Hero</a>
-  <a routerLink="/upgrades" [hidden]="!upgradesUnlocked">Upgrades</a>
-  <a routerLink="/debug" [hidden]="!debugMode">Debug</a>
-</nav>
+<app-tablist></app-tablist>
 <app-age></app-age>
 <hr>
 <router-outlet></router-outlet>

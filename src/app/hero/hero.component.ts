@@ -13,17 +13,24 @@ export class HeroComponent implements OnInit {
   nextClickerCost: any;
   clickers: any;
 
+  progress: any;
+
   constructor(com: CommunicatorService) {
     this.com = com;
   }
 
   ngOnInit() {
-    this.com.currencyE.subscribe(val => this.currency = val);
+    this.com.currencyE.subscribe(val => this.currencyTick(val));
     this.com.clickersE.subscribe(val => this.clickers = val);
     this.com.nextclickerCostE.subscribe(val => this.nextClickerCost = val);
   }
 
   buyClicker() {
     this.com.purchaseEvent.next('test');
+  }
+
+  currencyTick(val: any) {
+    this.currency = val;
+    this.progress = Math.min(100, (this.currency / this.nextClickerCost) * 100);
   }
 }

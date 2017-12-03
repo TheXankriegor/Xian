@@ -8,7 +8,7 @@ import {DebugComponent} from './debug/debug.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
-  { path: 'main', component: MainComponent},
+  { path: 'main', component: MainComponent, data: {name: 'main'}},
   { path: 'hero', component: HeroComponent},
   { path: 'upgrades', component: UpgradesComponent },
   { path: 'debug', component: DebugComponent }
@@ -23,4 +23,5 @@ const routes: Routes = [
   ],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
