@@ -1,3 +1,5 @@
-<p>
-  upgrades works!
-</p>
+<p>Curreny: {{currency.toFixed(2)}}</p>
+<p>Currently puchased Upgrades: {{upgradeCount}}</p>
+<button (click)="buyUpgrade()" [disabled]="currency < nextUpgradeCost">
+  Purchase Upgrade for {{nextUpgradeCost}}
+</button>

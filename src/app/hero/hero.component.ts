@@ -15,7 +15,6 @@ export class HeroComponent implements OnInit {
 
   constructor(com: CommunicatorService) {
     this.com = com;
-    com.updateEvent.subscribe(val => this.updateTick());
   }
 
   ngOnInit() {
@@ -26,9 +25,5 @@ export class HeroComponent implements OnInit {
 
   buyClicker() {
     this.com.purchaseEvent.next('test');
-  }
-
-  updateTick() {
-
   }
 }

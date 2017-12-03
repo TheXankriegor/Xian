@@ -15,6 +15,9 @@ export class CommunicatorService {
   clickersE = new BehaviorSubject(0);
   nextclickerCostE = new BehaviorSubject(0);
 
+  upgradesE = new BehaviorSubject(0);
+  nextUpgradeCostE = new BehaviorSubject(0);
+
   constructor() { }
 
   updateTick() {
