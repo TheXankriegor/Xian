@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {HeroComponent} from './hero/hero.component';
-import {MainComponent} from './main/main.component';
-import {UpgradesComponent} from './upgrades/upgrades.component';
-import {DebugComponent} from './debug/debug.component';
+import {HeroComponent} from '../hero/hero.component';
+import {MainComponent} from '../main/main.component';
+import {UpgradesComponent} from '../upgrades/upgrades.component';
+import {DebugComponent} from '../debug/debug.component';
+import {AgeComponent} from '../age/age.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent, data: {name: 'main'}},
   { path: 'hero', component: HeroComponent},
   { path: 'upgrades', component: UpgradesComponent },
+  { path: 'age', component: AgeComponent },
   { path: 'debug', component: DebugComponent }
 ];
 

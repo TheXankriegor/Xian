@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CommunicatorService} from '../communicator.service';
+import {CommunicatorService} from '../services_routing/communicator.service';
 import {Names} from '../content/names';
 
 @Component({
@@ -8,26 +8,17 @@ import {Names} from '../content/names';
   styleUrls: ['./age.component.css']
 })
 export class AgeComponent implements OnInit {
-  nam: Names;
+
   dynasty: string;
 
   age = 0;
 
-  constructor(com: CommunicatorService, nam: Names) {
-    com.updateEvent.subscribe(val => this.updateTick());
-    this.nam = nam;
-    this.dynasty = nam.getRandomName();
-
+  constructor(com: CommunicatorService) {
+    com.ageE.subscribe(val => this.age = val);
+    com.dynastyE.subscribe(val => this.dynasty = val);
   }
 
   ngOnInit() {
   }
 
-  updateTick() {
-    this.age += 1;
-    if (this.age >= 1000) {
-      this.age = 0;
-      this.dynasty = this.nam.getRandomName();
-    }
-  }
 }

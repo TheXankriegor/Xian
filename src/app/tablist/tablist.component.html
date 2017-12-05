@@ -1,27 +1,47 @@
-<ngb-tabset (tabChange)="onTabChange($event)">
-  <ngb-tab id="main">
-    <ng-template ngbTabTitle>Main
-    </ng-template>
-    <ng-template ngbTabContent>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab id="hero">
-    <ng-template ngbTabTitle>Hero
-    </ng-template>
-    <ng-template ngbTabContent>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab id="upgrades" *ngIf='upgradesUnlocked'>
-    <ng-template ngbTabTitle>Upgrades
-    </ng-template>
-    <ng-template ngbTabContent>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab id="debug" *ngIf="debugMode">
-    <ng-template ngbTabTitle>
-      Debug
-    </ng-template>
-    <ng-template ngbTabContent>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Xian</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a class="nav-item nav-link" href="#" routerLink="/hero">Hero</a></li>
+        <li><a #upgrades class="nav-item nav-link" href="#" routerLink="/upgrades"  >Upgrades</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/debug" [hidden]="!debugMode">Debug</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="nav-item nav-link" href="#" routerLink="/age"> Year {{age}} of the Dynasty of {{dynasty}}.</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div style="margin-top: 70px"></div>
+<!--
+
+<nav class="navbar navbar-expand navbar-inverse">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Xian</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <img style="fill: white" src="/assets/octicons/three-bars.svg" width="30" height="30" alt="">
+      </span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a class="nav-item nav-link" href="#" routerLink="/hero">Hero</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/upgrades" hidden="!upgradesUnlocked"
+               [hidden]="!upgradesUnlocked">Upgrades</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/debug" [hidden]="!debugMode">Debug</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+//-->

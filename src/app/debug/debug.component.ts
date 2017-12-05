@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {CommunicatorService} from '../communicator.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CommunicatorService} from '../services_routing/communicator.service';
 
 @Component({
   selector: 'app-debug',
@@ -7,6 +7,8 @@ import {CommunicatorService} from '../communicator.service';
   styleUrls: ['./debug.component.css']
 })
 export class DebugComponent implements OnInit {
+  @ViewChild('unlockCheck') unlockCheck: ElementRef;
+
   com: CommunicatorService;
 
   unlocks = false;
@@ -16,6 +18,14 @@ export class DebugComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.com.upgradesUnlockedE.getValue() === false) {
+      this.unlockCheck.nativeElement.checked = '';
+      this.unlocks = false;
+    } else {
+      this.unlockCheck.nativeElement.checked = 'checked';
+      this.unlocks = true;
+    }
+  //   this.unlockCheck.nativeElement.checked = !this.com.upgradesUnlockedE.getValue();
   }
 
   onToggleUnlock() {

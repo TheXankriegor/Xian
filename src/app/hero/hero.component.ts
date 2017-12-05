@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommunicatorService} from '../communicator.service';
+import { CommunicatorService} from '../services_routing/communicator.service';
 
 @Component({
   selector: 'app-hero',

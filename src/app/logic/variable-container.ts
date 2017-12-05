@@ -1,9 +1,12 @@
-import {CommunicatorService} from './communicator.service';
+import {CommunicatorService} from '../services_routing/communicator.service';
 import {CookieModule, CookieService} from 'ngx-cookie';
+import {Names} from '../content/names';
 
 export class VariableContainer {
 
   tick: 0;
+  age: 0;
+  dynasty: string;
 
   testClickers = 1;
   testCurrency = 0;
@@ -12,7 +15,9 @@ export class VariableContainer {
   testUpgrade = 0;
   testNextUpgradeCost = 20;
 
-  constructor(private com: CommunicatorService, private _cookieService: CookieService ) {
+  upgradesUnlocked: any;
+
+  constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names) {
     this.com.updateEvent.subscribe(val => this.updateTick());
     this.com.purchaseEvent.subscribe(val => this.purchase(val));
     this.com.clickersE.next(this.testClickers);
@@ -20,9 +25,16 @@ export class VariableContainer {
     this.com.upgradesE.next(this.testUpgrade);
     this.com.nextUpgradeCostE.next(this.testNextUpgradeCost);
 
- //   const sav = +this._cookieService.get('currency');
-   // if (!isNaN(sav)) {
-      //this.testCurrency = sav;
+    this.com.upgradesUnlockedE.subscribe(val => this.upgradesUnlocked = val);
+
+    this.age = 0;
+    this.dynasty = this.nam.getRandomName();
+
+    this.com.ageE.next(this.age);
+    this.com.dynastyE.next(this.dynasty);
+    //   const sav = +this._cookieService.get('currency');
+    // if (!isNaN(sav)) {
+    //this.testCurrency = sav;
     //}
 
   }
@@ -30,9 +42,17 @@ export class VariableContainer {
 
   updateTick() {
     this.tick += 1;
-    this.testCurrency += (this.testClickers * (0.1 * (this.testUpgrade + 1)) );
+    this.testCurrency += (this.testClickers * (0.1 * (this.testUpgrade + 1)));
     this.com.currencyE.next(this.testCurrency);
     this._cookieService.put('currency', '' + this.testCurrency);
+
+    this.age += 1;
+    if (this.age >= 1000) {
+      this.age = 0;
+      this.dynasty = this.nam.getRandomName();
+    }
+    this.com.ageE.next(this.age);
+    this.com.dynastyE.next(this.dynasty);
 
   }
 
@@ -58,6 +78,7 @@ export class VariableContainer {
       }
 
 
-    } catch (e) {}
+    } catch (e) {
+    }
   }
 }

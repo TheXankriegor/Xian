@@ -1,5 +1,19 @@
 <p>Curreny: {{currency.toFixed(2)}}</p>
+<div class="panel panel-default">
+  <div class="panel-body">
 <p>Currently puchased Upgrades: {{upgradeCount}}</p>
-<button (click)="buyUpgrade()" [disabled]="currency < nextUpgradeCost">
-  Purchase Upgrade for {{nextUpgradeCost}}
-</button>
+  </div>
+  <div class="panel-footer">
+<div class="row">
+  <div class="col-sm-4">
+    <button class="btn btn-block" (click)="buyUpgrade()" [disabled]="currency < nextUpgradeCost">
+      Purchase Upgrade for {{nextUpgradeCost}}
+    </button>
+  </div>
+  <div class="col-sm-8">
+      <ngb-progressbar type="info" [value]="progress" height="34px"></ngb-progressbar>
+      <div class="progress-bar-title">{{progress.toFixed(2)}}%</div>
+  </div>
+</div>
+  </div>
+</div>

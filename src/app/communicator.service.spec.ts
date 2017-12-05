@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CommunicatorService } from './communicator.service';
+import { CommunicatorService } from './services_routing/communicator.service';
 
 describe('CommunicatorService', () => {
   beforeEach(() => {
