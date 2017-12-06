@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HeroComponent} from '../hero/hero.component';
+import { ClickersComponent} from '../clickers/clickers.component';
 import {Subject} from 'rxjs/Subject';
 import {log} from 'util';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -19,8 +19,20 @@ export class CommunicatorService {
   upgradesE = new BehaviorSubject(0);
   nextUpgradeCostE = new BehaviorSubject(0);
 
-  ageE = new BehaviorSubject(0);
-  dynastyE = new BehaviorSubject('null');
+
+  //worldTime
+  tickCountE = new BehaviorSubject(0);
+  timeScaleE = new BehaviorSubject(1);
+
+  dynastyLeaderE = new BehaviorSubject('null');
+  nextDynastyLeaderE = new BehaviorSubject('null');
+  dynastyE = new BehaviorSubject(1);
+
+  yeartotalE = new BehaviorSubject(1);
+  yearE = new BehaviorSubject(1);
+  monthE = new BehaviorSubject(1);
+  dayE = new BehaviorSubject(1);
+
 
   constructor() { }
 

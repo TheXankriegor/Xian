@@ -25,10 +25,6 @@ export class TablistComponent implements OnInit {
 
   ngOnInit() {
     this.com.upgradesUnlockedE.subscribe(val => this.setUpgradeVisibility(val));
-
-    this.com.ageE.subscribe(val => this.age = val);
-    this.com.dynastyE.subscribe(val => this.dynasty = val);
-
   }
 
   setUpgradeVisibility(val: any) {
@@ -37,24 +33,6 @@ export class TablistComponent implements OnInit {
       this.upgrades.nativeElement.classList.remove('hidden');
     } else {
       this.upgrades.nativeElement.classList.add('hidden');
-    }
-
-  }
-
-  onTabChange($event: NgbTabChangeEvent) {
-    switch ($event.nextId) {
-      case 'main':
-        this.router.navigateByUrl('/main');
-        break;
-      case 'hero':
-        this.router.navigateByUrl('/hero');
-        break;
-      case 'upgrades':
-        this.router.navigateByUrl('/upgrades');
-        break;
-      case 'debug':
-        this.router.navigateByUrl('/debug');
-        break;
     }
 
   }

@@ -3,10 +3,10 @@ import { CommunicatorService} from '../services_routing/communicator.service';
 
 @Component({
   selector: 'app-hero',
-  templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.css']
+  templateUrl: './clickers.component.html',
+  styleUrls: ['./clickers.component.css']
 })
-export class HeroComponent implements OnInit {
+export class ClickersComponent implements OnInit {
   com: CommunicatorService;
 
   currency: any;

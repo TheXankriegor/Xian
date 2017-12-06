@@ -1,9 +1,15 @@
 import {CommunicatorService} from '../services_routing/communicator.service';
 import {CookieModule, CookieService} from 'ngx-cookie';
 import {Names} from '../content/names';
+import {WorldTime} from './worldtime';
+import {Hero} from './hero';
 
 export class VariableContainer {
 
+  //put unlocks etc here
+
+  time: WorldTime;
+  currentHero: Hero;
   tick: 0;
   age: 0;
   dynasty: string;
@@ -18,6 +24,9 @@ export class VariableContainer {
   upgradesUnlocked: any;
 
   constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names) {
+    this.time = new WorldTime(com, nam);
+
+
     this.com.updateEvent.subscribe(val => this.updateTick());
     this.com.purchaseEvent.subscribe(val => this.purchase(val));
     this.com.clickersE.next(this.testClickers);
@@ -30,8 +39,6 @@ export class VariableContainer {
     this.age = 0;
     this.dynasty = this.nam.getRandomName();
 
-    this.com.ageE.next(this.age);
-    this.com.dynastyE.next(this.dynasty);
     //   const sav = +this._cookieService.get('currency');
     // if (!isNaN(sav)) {
     //this.testCurrency = sav;
@@ -41,6 +48,8 @@ export class VariableContainer {
 
 
   updateTick() {
+    this.time.advanceTime();
+
     this.tick += 1;
     this.testCurrency += (this.testClickers * (0.1 * (this.testUpgrade + 1)));
     this.com.currencyE.next(this.testCurrency);
@@ -51,8 +60,7 @@ export class VariableContainer {
       this.age = 0;
       this.dynasty = this.nam.getRandomName();
     }
-    this.com.ageE.next(this.age);
-    this.com.dynastyE.next(this.dynasty);
+
 
   }
 

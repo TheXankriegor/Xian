@@ -11,12 +11,12 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav">
-        <li><a class="nav-item nav-link" href="#" routerLink="/hero">Hero</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/clickers">Clickers</a></li>
         <li><a #upgrades class="nav-item nav-link" href="#" routerLink="/upgrades"  >Upgrades</a></li>
         <li><a class="nav-item nav-link" href="#" routerLink="/debug" [hidden]="!debugMode">Debug</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-item nav-link" href="#" routerLink="/age"> Year {{age}} of the Dynasty of {{dynasty}}.</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/age"><app-age></app-age></a></li>
       </ul>
     </div>
   </div>
@@ -35,7 +35,7 @@
     </button>
     <div class="collapse navbar-collapse text-center" id="navbar">
       <ul class="nav navbar-nav">
-        <li><a class="nav-item nav-link" href="#" routerLink="/hero">Hero</a></li>
+        <li><a class="nav-item nav-link" href="#" routerLink="/clickers">Hero</a></li>
         <li><a class="nav-item nav-link" href="#" routerLink="/upgrades" hidden="!upgradesUnlocked"
                [hidden]="!upgradesUnlocked">Upgrades</a></li>
         <li><a class="nav-item nav-link" href="#" routerLink="/debug" [hidden]="!debugMode">Debug</a></li>

@@ -1,0 +1,17 @@
+<div>
+  <p>
+    It is the {{day}}. of {{months[month-1]}} in the Year {{year}} of the {{dynastyLeader}}-Dynasty. Let's hope it
+    doesn't rain.
+  </p>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body row">
+    <div class="col-sm-8 container">
+      Changing the timescale is pretty dank. Probably.
+    </div>
+    <div id="slidecontainer" class="col-sm-4">
+      <input #timescaleslider type="range" min="1" max="5" step="1" value="{{timeScale}}" class="slider" id="timescaleslider"
+             (input)="onTimeScaleChange()">
+    </div>
+  </div>
+</div>

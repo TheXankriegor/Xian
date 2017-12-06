@@ -15,7 +15,8 @@ import {NgbModule, NgbTabset} from '@ng-bootstrap/ng-bootstrap';
 import { TablistComponent } from './tablist/tablist.component';
 import * as $ from 'jquery';
 import {AppRoutingModule} from './services_routing/app-routing.module';
-import {HeroComponent} from './hero/hero.component';
+import { ClickersComponent} from './clickers/clickers.component';
+import { AgedetailComponent } from './agedetail/agedetail.component';
 
 
 @NgModule({
@@ -27,12 +28,13 @@ import {HeroComponent} from './hero/hero.component';
   ],
   declarations: [
     AppComponent,
-    HeroComponent,
+    ClickersComponent,
     MainComponent,
     AgeComponent,
     UpgradesComponent,
     DebugComponent,
-    TablistComponent
+    TablistComponent,
+    AgedetailComponent
   ],
   providers: [CommunicatorService, Names],
   bootstrap: [AppComponent]
