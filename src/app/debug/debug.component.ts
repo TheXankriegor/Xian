@@ -11,6 +11,8 @@ export class DebugComponent implements OnInit {
 
   com: CommunicatorService;
 
+  heroExists: boolean;
+
   unlocks = false;
 
   constructor(com: CommunicatorService) {
@@ -18,6 +20,8 @@ export class DebugComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.com.heroExistsE.subscribe(value => this.heroExists = value);
+
     if (this.com.upgradesUnlockedE.getValue() === false) {
       this.unlockCheck.nativeElement.checked = '';
       this.unlocks = false;
@@ -31,5 +35,9 @@ export class DebugComponent implements OnInit {
   onToggleUnlock() {
     this.unlocks = !this.unlocks;
     this.com.toggleUpgrades(this.unlocks);
+  }
+
+  onToggleDelete() {
+    this.com.currentHeroE.next(null);
   }
 }

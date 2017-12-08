@@ -1,0 +1,26 @@
+<div *ngIf="!heroExists"> Your Hero died, you might want to create a new one...</div>
+<div *ngIf="heroExists">
+  <div class="row">
+    <div class="col-sm-8">
+
+      <div class="row">
+        <div class="col-sm-4">
+          <button (click)="onCultivate()" class="btn btn-block">
+            {{cultivationButtonText}}
+          </button>
+        </div>
+        <div class="col-sm-8">
+          <ngb-progressbar type="info" [value]="cultivationProgress" height="34px"></ngb-progressbar>
+          <div class="progress-bar-title">{{cultivationBarText}}</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-4">
+        <div>
+          <div>Your Hero was born on the {{herobirth[0]}}. of {{nam.MONTHS[herobirth[1] - 1]}}.</div>
+        </div>
+        <p>Your Hero is now {{heroage[0]}} days, {{heroage[1]}} months and {{heroage[2]}} years old.</p>
+    </div>
+  </div>
+</div>

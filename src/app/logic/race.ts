@@ -1,6 +1,6 @@
 export class Race {
 
-  constructor(public id: number, public name: string, public dummyval: number) {
+  constructor(public id: number, public name: string, public lifespan: number, public dummyval: number) {
 
   }
 

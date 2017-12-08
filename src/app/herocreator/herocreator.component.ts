@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Names} from '../content/names';
 import {CommunicatorService} from '../services_routing/communicator.service';
 import {Race} from '../logic/race';
@@ -19,12 +19,17 @@ export class HerocreatorComponent implements OnInit {
   unlockedRaces: number[];
 
   model: Hero;
-  heroCreated = false;
+  heroCreated: boolean;
 
   constructor(private nam: Names, private com: CommunicatorService, private values: Values) {
+    this.com.heroExistsE.subscribe(value => this.heroCreated = value);
+
     this.com.unlockedRacestE.subscribe(value => this.unlockedRaces = value);
     this.raceOptions = this.values.getRaceOptions(this.unlockedRaces);
-    this.model = new Hero('', this.raceOptions[0]);
+    this.model = new Hero('', this.raceOptions[0], this.values.RANKS[0]);
+    if (this.heroCreated) {
+      this.model = <Hero>this.com.currentHeroE.getValue();
+    }
   }
 
   ngOnInit() {
@@ -32,7 +37,6 @@ export class HerocreatorComponent implements OnInit {
   }
 
   onSubmit() {
-    this.heroCreated = true;
     this.model.birth = [this.com.dayE.getValue(), this.com.monthE.getValue(), this.com.yeartotalE.getValue()];
     this.com.currentHeroE.next(this.model);
   }

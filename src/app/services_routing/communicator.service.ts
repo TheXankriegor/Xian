@@ -23,8 +23,18 @@ export class CommunicatorService {
 
   //variableContainer
   unlockedRacestE = new BehaviorSubject([1]);
+  maxTimeScaleE = new BehaviorSubject(1);
+
   currentHeroE = new BehaviorSubject(null);
+  currentHeroRankE = new BehaviorSubject(null);
+  currentHeroRankProgressE = new BehaviorSubject(0);
+
+  heroExistsE = new BehaviorSubject(false);
+  heroActionE = new BehaviorSubject(0);
   currentHeroAgeE = new BehaviorSubject([0, 0, 0]);
+
+  //unlockedTabs
+  unlockedCultivationE = new BehaviorSubject(false);
 
   //worldTime
   tickCountE = new BehaviorSubject(0);

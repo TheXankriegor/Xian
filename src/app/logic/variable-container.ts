@@ -3,14 +3,25 @@ import {CookieModule, CookieService} from 'ngx-cookie';
 import {Names} from '../content/names';
 import {WorldTime} from './worldtime';
 import {Hero} from './hero';
+import {Values} from '../content/values';
 
 export class VariableContainer {
 
   //put unlocks etc here
-
-  time: WorldTime;
-  currentHero: Hero;
+  unlockedCultivation = false;
   unlockedRaces: number[] = [0, 1, 2];
+
+  //world values
+  time: WorldTime;
+  maxTimeScale = 30;
+  heroCount = 0;
+
+  //runtime values
+  currentHero: Hero;
+  heroExists = false;
+  //0 = none, 1 = cultivating
+  heroAction: number;
+
 
 
 
@@ -27,21 +38,27 @@ export class VariableContainer {
 
   upgradesUnlocked: any;
 
-  constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names) {
+  constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names, private val: Values) {
+
     this.time = new WorldTime(com, nam);
 
+    this.com.unlockedCultivationE.next(this.unlockedCultivation);
+
     this.com.unlockedRacestE.next(this.unlockedRaces);
+    this.com.maxTimeScaleE.next(this.maxTimeScale);
 
-    this.com.currentHeroE.subscribe(value => this.currentHero = <Hero>value);
+    this.com.currentHeroE.subscribe(value => this.createHero(<Hero>value));
+    this.heroAction = 0;
+    this.com.heroActionE.subscribe(value => this.heroAction = value);
 
-    this.com.updateEvent.subscribe(val => this.updateTick());
-    this.com.purchaseEvent.subscribe(val => this.purchase(val));
+    this.com.updateEvent.subscribe(value => this.updateTick());
+    this.com.purchaseEvent.subscribe(value => this.purchase(value));
     this.com.clickersE.next(this.testClickers);
     this.com.nextclickerCostE.next(this.testNextClickerCost);
     this.com.upgradesE.next(this.testUpgrade);
     this.com.nextUpgradeCostE.next(this.testNextUpgradeCost);
 
-    this.com.upgradesUnlockedE.subscribe(val => this.upgradesUnlocked = val);
+    this.com.upgradesUnlockedE.subscribe(value => this.upgradesUnlocked = value);
 
     this.age = 0;
     this.dynasty = this.nam.getRandomName();
@@ -55,10 +72,17 @@ export class VariableContainer {
 
 
   updateTick() {
-    this.time.advanceTime();
+    const passedTime = this.time.advanceTime();
     if (this.currentHero) {
       this.currentHero.totalage = this.time.getAgeDifference(this.currentHero.birth);
       this.com.currentHeroAgeE.next(this.currentHero.totalage);
+      if (this.currentHero.totalage)
+
+      if (this.heroAction === 1) {
+        this.currentHero.cultivate(passedTime, this.val);
+        this.com.currentHeroRankE.next(this.currentHero.rank);
+        this.com.currentHeroRankProgressE.next(this.currentHero.rankprogress);
+      }
     }
 
 
@@ -100,5 +124,26 @@ export class VariableContainer {
 
     } catch (e) {
     }
+  }
+
+  createHero(newHero: Hero) {
+    if (this.heroCount === 0) {
+      this.unlockedCultivation = true;
+      this.com.unlockedCultivationE.next(this.unlockedCultivation);
+    }
+    if (newHero !== null) {
+      this.currentHero = newHero;
+      this.heroExists = true;
+      this.com.heroExistsE.next(this.heroExists);
+      this.heroCount += 1;
+
+      this.com.currentHeroRankE.next(this.currentHero.rank);
+      this.com.currentHeroRankProgressE.next(this.currentHero.rankprogress);
+    } else {
+      this.currentHero = null;
+      this.heroExists = false;
+      this.com.heroExistsE.next(this.heroExists);
+    }
+
   }
 }

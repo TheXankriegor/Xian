@@ -10,10 +10,11 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
   styleUrls: ['./tablist.component.css']
 })
 export class TablistComponent implements OnInit {
+  @ViewChild('cultivation') elementCultivation: ElementRef;
+
   @ViewChild('upgrades') upgrades: ElementRef;
 
-  dynasty: string;
-  age = 0;
+  cultivationUnlocked: boolean = false;
 
   upgradesUnlocked: any = false;
   debugMode = true;
@@ -24,7 +25,18 @@ export class TablistComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.com.unlockedCultivationE.subscribe(value => this.setCultivationVisibility(value));
+
     this.com.upgradesUnlockedE.subscribe(val => this.setUpgradeVisibility(val));
+  }
+
+  setCultivationVisibility(val: any) {
+    val = <boolean>val;
+    if (this.elementCultivation.nativeElement.classList.contains('hidden')) {
+      this.elementCultivation.nativeElement.classList.remove('hidden');
+    } else {
+      this.elementCultivation.nativeElement.classList.add('hidden');
+    }
   }
 
   setUpgradeVisibility(val: any) {
@@ -34,6 +46,5 @@ export class TablistComponent implements OnInit {
     } else {
       this.upgrades.nativeElement.classList.add('hidden');
     }
-
   }
 }

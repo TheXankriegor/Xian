@@ -7,10 +7,12 @@ import {UpgradesComponent} from '../upgrades/upgrades.component';
 import {DebugComponent} from '../debug/debug.component';
 import {AgeComponent} from '../age/age.component';
 import {AgedetailComponent} from '../agedetail/agedetail.component';
+import {CultivationComponent} from '../cultivation/cultivation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent, data: {name: 'main'}},
+  { path: 'cultivation', component: CultivationComponent},
   { path: 'clickers', component: ClickersComponent},
   { path: 'upgrades', component: UpgradesComponent },
   { path: 'age', component: AgedetailComponent },

@@ -22,7 +22,7 @@ export class AppComponent {
   constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names, private val: Values) {
     const updateTimer = setInterval(() => this.appUpdate(), this.updateIntveral);
 
-    this.varContainer = new VariableContainer(com, this._cookieService, this.nam);
+    this.varContainer = new VariableContainer(com, this._cookieService, this.nam, this.val);
   }
 
   appUpdate() {

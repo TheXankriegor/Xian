@@ -27,6 +27,7 @@ export class WorldTime {
     this.year = Math.floor((Math.random() * 999) + 1);
 
     this.dynastyLeader = this.nam.getRandomName();
+
     this.com.tickCountE.next(this.tickCount);
     this.com.timeScaleE.next(this.timeScale);
     this.com.timeScaleE.subscribe(value => this.changeTimeScale(value));
@@ -41,19 +42,20 @@ export class WorldTime {
   }
 
 
-  advanceTime() {
+  advanceTime(): number[] {
     this.tickCount += 1;
     const passed = [0, 0, 0];
 
-    if (this.timeScale < 5) {
+    if (this.timeScale < 20) {
       this.smallTick += 1;
       if (this.smallTick > 20 - this.timeScale) {
         this.addDays(1);
         passed[0] = 1;
         this.smallTick = 0;
       }
-    } else if (this.timeScale >= 5) {
-      this.addDays(this.timeScale - 4);
+    } else if (this.timeScale >= 20) {
+      this.addDays(this.timeScale - 19);
+      passed[0] = this.timeScale - 19;
     }
 
     //this.addDays(this.timeScale);
@@ -66,6 +68,8 @@ export class WorldTime {
     this.com.yearE.next(this.year);
     this.com.monthE.next(this.month);
     this.com.dayE.next(this.day);
+
+    return passed;
   }
 
   addDays(days: number) {
@@ -88,7 +92,7 @@ export class WorldTime {
     if (this.year >= 1000) {
       this.year = 1;
       this.dynasty += 1;
-      if (this.nextDynastyLeader !== '') {
+      if (this.nextDynastyLeader) {
         this.dynastyLeader = this.nextDynastyLeader;
         this.nextDynastyLeader = '';
       } else {

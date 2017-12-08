@@ -1,3 +1,7 @@
 
 
-Unlock Upgrades: <input #unlockCheck type="checkbox" id="debugUnlock" (change)="onToggleUnlock()">
+<span>Unlock Upgrades: <input #unlockCheck type="checkbox" id="debugUnlock" (change)="onToggleUnlock()"></span>
+
+<button (click)="onToggleDelete()" class="btn btn-block" [disabled]="!heroExists">
+  Delete Hero
+</button>

@@ -1,9 +1,8 @@
-<form (ngSubmit)="onSubmit()" #heroForm="ngForm" [hidden]="heroCreated">
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm" *ngIf="!heroCreated">
   <div class="form-group">
     <label for="name">Hero Name</label>
     <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
   </div>
-
   <div class="form-group" *ngIf="raceOptions.length > 1">
     <label for="race">Hero Race</label>
     <select class="form-control" id="race"
@@ -12,7 +11,7 @@
       <option *ngFor="let race of raceOptions" [value]="race">{{race.name}}</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success">Create Hero</button>
 </form>
 
 

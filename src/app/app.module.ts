@@ -20,6 +20,7 @@ import { ClickersComponent} from './clickers/clickers.component';
 import { AgedetailComponent } from './agedetail/agedetail.component';
 import { HerocreatorComponent } from './herocreator/herocreator.component';
 import {Values} from './content/values';
+import { CultivationComponent } from './cultivation/cultivation.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {Values} from './content/values';
     DebugComponent,
     TablistComponent,
     AgedetailComponent,
-    HerocreatorComponent
+    HerocreatorComponent,
+    CultivationComponent
   ],
   providers: [CommunicatorService, Names, Values],
   bootstrap: [AppComponent]
