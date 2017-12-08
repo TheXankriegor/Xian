@@ -10,6 +10,10 @@ export class VariableContainer {
 
   time: WorldTime;
   currentHero: Hero;
+  unlockedRaces: number[] = [0, 1, 2];
+
+
+
   tick: 0;
   age: 0;
   dynasty: string;
@@ -26,6 +30,9 @@ export class VariableContainer {
   constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names) {
     this.time = new WorldTime(com, nam);
 
+    this.com.unlockedRacestE.next(this.unlockedRaces);
+
+    this.com.currentHeroE.subscribe(value => this.currentHero = <Hero>value);
 
     this.com.updateEvent.subscribe(val => this.updateTick());
     this.com.purchaseEvent.subscribe(val => this.purchase(val));
@@ -49,6 +56,11 @@ export class VariableContainer {
 
   updateTick() {
     this.time.advanceTime();
+    if (this.currentHero) {
+      this.currentHero.totalage = this.time.getAgeDifference(this.currentHero.birth);
+      this.com.currentHeroAgeE.next(this.currentHero.totalage);
+    }
+
 
     this.tick += 1;
     this.testCurrency += (this.testClickers * (0.1 * (this.testUpgrade + 1)));

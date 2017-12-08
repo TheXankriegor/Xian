@@ -3,6 +3,7 @@
     It is the {{day}}. of {{months[month-1]}} in the Year {{year}} of the {{dynastyLeader}}-Dynasty. Let's hope it
     doesn't rain.
   </p>
+  <p *ngIf="heroExists">Your Hero is {{heroage[0]}} days, {{heroage[1]}} months and {{heroage[2]}} years old.</p>
 </div>
 <div class="panel panel-default">
   <div class="panel-body row">
@@ -10,7 +11,7 @@
       Changing the timescale is pretty dank. Probably.
     </div>
     <div id="slidecontainer" class="col-sm-4">
-      <input #timescaleslider type="range" min="1" max="5" step="1" value="{{timeScale}}" class="slider" id="timescaleslider"
+      <input #timescaleslider type="range" min="1" max="10" step="1" value="{{timeScale}}" class="slider" id="timescaleslider"
              (input)="onTimeScaleChange()">
     </div>
   </div>

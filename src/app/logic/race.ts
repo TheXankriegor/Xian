@@ -1,8 +1,10 @@
 export class Race {
 
+  constructor(public id: number, public name: string, public dummyval: number) {
 
+  }
 
-  constructor() {
-
+  toString(): string {
+    return this.name;
   }
 }

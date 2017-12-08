@@ -3,6 +3,7 @@ import { ClickersComponent} from '../clickers/clickers.component';
 import {Subject} from 'rxjs/Subject';
 import {log} from 'util';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Hero} from '../logic/hero';
 
 @Injectable()
 export class CommunicatorService {
@@ -19,6 +20,11 @@ export class CommunicatorService {
   upgradesE = new BehaviorSubject(0);
   nextUpgradeCostE = new BehaviorSubject(0);
 
+
+  //variableContainer
+  unlockedRacestE = new BehaviorSubject([1]);
+  currentHeroE = new BehaviorSubject(null);
+  currentHeroAgeE = new BehaviorSubject([0, 0, 0]);
 
   //worldTime
   tickCountE = new BehaviorSubject(0);

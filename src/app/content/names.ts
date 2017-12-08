@@ -41,7 +41,6 @@ export class Names {
     'Ziying'
   ];
 
-
   MONTHS: string[] = [
     'January',
     'February',
@@ -68,6 +67,8 @@ export class Names {
   getName(i: number): string {
     return this.MALEFIRSTNAMES[i];
   }
+
+
 
   getMonths(): string[] {
     return this.MONTHS;

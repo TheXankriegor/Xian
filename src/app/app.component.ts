@@ -5,6 +5,7 @@ import { CommunicatorService} from './services_routing/communicator.service';
 import {VariableContainer} from './logic/variable-container';
 import {CookieService} from 'ngx-cookie';
 import {Names} from './content/names';
+import {Values} from './content/values';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AppComponent {
 
   updateIntveral = 50;
 
-  constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names ) {
+  constructor(private com: CommunicatorService, private _cookieService: CookieService, private nam: Names, private val: Values) {
     const updateTimer = setInterval(() => this.appUpdate(), this.updateIntveral);
 
     this.varContainer = new VariableContainer(com, this._cookieService, this.nam);

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {CommunicatorService} from './services_routing/communicator.service';
@@ -17,6 +18,8 @@ import * as $ from 'jquery';
 import {AppRoutingModule} from './services_routing/app-routing.module';
 import { ClickersComponent} from './clickers/clickers.component';
 import { AgedetailComponent } from './agedetail/agedetail.component';
+import { HerocreatorComponent } from './herocreator/herocreator.component';
+import {Values} from './content/values';
 
 
 @NgModule({
@@ -24,6 +27,7 @@ import { AgedetailComponent } from './agedetail/agedetail.component';
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     CookieModule.forRoot()
   ],
   declarations: [
@@ -34,9 +38,10 @@ import { AgedetailComponent } from './agedetail/agedetail.component';
     UpgradesComponent,
     DebugComponent,
     TablistComponent,
-    AgedetailComponent
+    AgedetailComponent,
+    HerocreatorComponent
   ],
-  providers: [CommunicatorService, Names],
+  providers: [CommunicatorService, Names, Values],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CommunicatorService} from '../services_routing/communicator.service';
 import {Names} from '../content/names';
+import {Hero} from '../logic/hero';
 
 @Component({
   selector: 'app-agedetail',
@@ -19,6 +20,9 @@ export class AgedetailComponent implements OnInit {
   months: string[] = this.nam.getMonths();
   dynastyLeader: any;
 
+  heroage: number[];
+  heroExists = false;
+
   constructor(private com: CommunicatorService, private nam: Names) {  }
 
   ngOnInit() {
@@ -29,11 +33,17 @@ export class AgedetailComponent implements OnInit {
     this.com.timeScaleE.subscribe(value => this.timeScale = value);
     this.months = this.nam.getMonths();
     this.com.dynastyLeaderE.subscribe(value => this.dynastyLeader = value);
+
+    if (this.com.currentHeroE.getValue() !== null) {
+      this.heroExists = true;
+      this.com.currentHeroAgeE.subscribe(value => this.heroage = value );
+    }
   }
 
 
   onTimeScaleChange() {
     this.com.timeScaleE.next(this.timescaleslider.nativeElement.value);
   }
+
 
 }
