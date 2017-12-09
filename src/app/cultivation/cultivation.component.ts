@@ -17,6 +17,9 @@ export class CultivationComponent implements OnInit {
   heroage: number[];
   herobirth: number[];
 
+  vitality: number;
+  vitalityMax: number;
+
   currentHero: Hero;
 
   currentlyCultivating: boolean;
@@ -37,6 +40,8 @@ export class CultivationComponent implements OnInit {
       this.com.currentHeroRankE.subscribe(value => this.onRankChange(value));
       this.com.currentHeroRankProgressE.subscribe(value => this.updateProgress(value));
 
+      this.vitality = 10;
+      this.vitalityMax = 100;
 
     }
   }

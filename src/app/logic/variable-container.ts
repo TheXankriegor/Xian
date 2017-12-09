@@ -13,7 +13,7 @@ export class VariableContainer {
 
   //world values
   time: WorldTime;
-  maxTimeScale = 30;
+  maxTimeScale = 50;
   heroCount = 0;
 
   //runtime values
@@ -21,8 +21,6 @@ export class VariableContainer {
   heroExists = false;
   //0 = none, 1 = cultivating
   heroAction: number;
-
-
 
 
   tick: 0;
@@ -76,12 +74,21 @@ export class VariableContainer {
     if (this.currentHero) {
       this.currentHero.totalage = this.time.getAgeDifference(this.currentHero.birth);
       this.com.currentHeroAgeE.next(this.currentHero.totalage);
-      if (this.currentHero.totalage)
 
       if (this.heroAction === 1) {
         this.currentHero.cultivate(passedTime, this.val);
         this.com.currentHeroRankE.next(this.currentHero.rank);
         this.com.currentHeroRankProgressE.next(this.currentHero.rankprogress);
+      }
+
+      if (this.currentHero.deathage[2] <= this.currentHero.totalage[2]) {
+        if (this.currentHero.deathage[1] <= this.currentHero.totalage[1]) {
+          if (this.currentHero.deathage[1] < this.currentHero.totalage[1] || this.currentHero.deathage[0] <= this.currentHero.totalage[0]) {
+
+            console.log('HERO DIED');
+            this.com.currentHeroE.next(null);
+          }
+        }
       }
     }
 
@@ -133,6 +140,7 @@ export class VariableContainer {
     }
     if (newHero !== null) {
       this.currentHero = newHero;
+      this.currentHero.updateLifeExpectancy();
       this.heroExists = true;
       this.com.heroExistsE.next(this.heroExists);
       this.heroCount += 1;

@@ -4,7 +4,4 @@ export class Race {
 
   }
 
-  toString(): string {
-    return this.name;
-  }
 }

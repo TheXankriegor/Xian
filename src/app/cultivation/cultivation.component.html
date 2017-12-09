@@ -21,6 +21,11 @@
           <div>Your Hero was born on the {{herobirth[0]}}. of {{nam.MONTHS[herobirth[1] - 1]}}.</div>
         </div>
         <p>Your Hero is now {{heroage[0]}} days, {{heroage[1]}} months and {{heroage[2]}} years old.</p>
+      <div>
+        <ngb-progressbar type="error" [value]="vitality" [max]="vitalityMax" height="34px"></ngb-progressbar>
+        <div class="progress-bar-title">Vitality</div>
+      </div>
+
     </div>
   </div>
 </div>

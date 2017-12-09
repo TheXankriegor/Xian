@@ -37,8 +37,12 @@ export class HerocreatorComponent implements OnInit {
   }
 
   onSubmit() {
-    this.model.birth = [this.com.dayE.getValue(), this.com.monthE.getValue(), this.com.yeartotalE.getValue()];
-    this.com.currentHeroE.next(this.model);
+    if (this.model.valid()) {
+      this.model.race = this.values.getRace(+this.model.race);
+      this.model.setBirth([this.com.dayE.getValue(), this.com.monthE.getValue(), this.com.yeartotalE.getValue()]);
+      this.com.currentHeroE.next(this.model);
+    }
+
   }
 
 }

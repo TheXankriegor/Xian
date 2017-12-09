@@ -14,9 +14,11 @@ export class Values {
   ];
 
   RANKS: Rank[] = [
-    new Rank(0, 'None', 50),
-    new Rank(1, 'Initial Transformation Realm', 100),
-    new Rank(2, 'Lower Transformation Realm', 500)
+    new Rank(0, 'None', 50, 1),
+    new Rank(1, 'Initial Transformation Realm', 100, 1.1),
+    new Rank(2, 'Lower Transformation Realm', 500, 1.2),
+    new Rank(3, 'Middle Transformation Realm', 1000, 1.3),
+    new Rank(4, 'Upper Transformation Realm', 2000, 1.4)
   ];
 
   constructor() {

@@ -8,12 +8,12 @@
     <select class="form-control" id="race"
             required
             [(ngModel)]="model.race" name="race" #power="ngModel">
-      <option *ngFor="let race of raceOptions" [value]="race">{{race.name}}</option>
+      <option *ngFor="let race of raceOptions" [value]="race.id">{{race.name}}</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-success">Create Hero</button>
+  <button type="submit" class="btn btn-success" >Create Hero</button>
 </form>
 
 
-<div>{{model.name}}: {{model.race}}</div>
+<div>{{model.name}}: {{model.race.name}}</div>
 <hr>
